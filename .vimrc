@@ -459,7 +459,7 @@ augroup END
 noremap <C-S> :update<CR>
 vnoremap <C-S> <C-C>:update<CR>
 inoremap <C-S> <C-O>:update<CR>
-"""""""""""""""""""""""""""""""iori end iori"""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""iori end iori end"""""""""""""""""""""""""""""""""""""""""""
 " Set the prettier CLI executable path
 let g:prettier#exec_cmd_path = "~/.vim/plugged/vim-prettier/node_modules/prettier"
 " Max line length that prettier will wrap on: a number or 'auto'
