@@ -6,7 +6,8 @@ syntax on
 
 " Set FZF Default to Ripgrep (must install ripgrep)
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --no-ignore-vcs'
-
+"easy finds files globally
+nmap <silent> gF :<C-u>Files ~<CR> 
 " Options viewable by using :options
 " Set options viewable by using :set all
 " Or help for individual configs can be accessed :help <name>
@@ -137,8 +138,8 @@ nmap <leader><leader><leader>g :GoMetaLinter<cr>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <leader><leader>c :call nerdcommenter#Comment(0,"toggle")<CR>
 vnoremap <leader><leader>c :call nerdcommenter#Comment(0,"toggle")<CR>
-nnoremap m, :bnext<CR>
-nnoremap ,m :bprevious<CR>
+nnoremap ,, :bnext<CR>
+nnoremap mm :bprevious<CR>
 
 nnoremap .. :bd<CR>
 """"""""""""""""""""""""coc nvim settings start""""""""""""""""""""""""
@@ -203,14 +204,8 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -296,21 +291,21 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings for CoCList
 " Show all diagnostics.
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+"nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+"" Manage extensions.
+"nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+"" Show commands.
+"nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+"" Find symbol of current document.
+"nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+"" Search workspace symbols.
+"nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+"" Do default action for next item.
+"nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+"" Do default action for previous item.
+"nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+"" Resume latest coc list.
+"nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 """"""""""""""""""""""""coc nvim settings end""""""""""""""""""""""""
 """""""""""""""""""""""""iori"""""""""""""""""""""""""""""""""""""""""
@@ -353,7 +348,7 @@ inoremap <C-k> <esc>:m .-2<CR>==
 vnoremap K :m '<-2<CR>gv=gv
 inoremap <C-j> <esc>:m .+1<CR>==
 nnoremap M :m .-2<CR>==
-nnoremap m :m .+1<CR>==
+"nnoremap m :m .+1<CR>==
 
 "airline from chrisatmachine
 " enable tabline
@@ -460,8 +455,11 @@ augroup VimCSS3Syntax
 
   autocmd FileType css setlocal iskeyword+=-
 augroup END
-
-"""""""""""""""""""""""""""""""iori end"""""""""""""""""""""""""""""""""""""""""""
+" Use CTRL-S for saving, also in Insert mode
+noremap <C-S> :update<CR>
+vnoremap <C-S> <C-C>:update<CR>
+inoremap <C-S> <C-O>:update<CR>
+"""""""""""""""""""""""""""""""iori end iori"""""""""""""""""""""""""""""""""""""""""""
 " Set the prettier CLI executable path
 let g:prettier#exec_cmd_path = "~/.vim/plugged/vim-prettier/node_modules/prettier"
 " Max line length that prettier will wrap on: a number or 'auto'
