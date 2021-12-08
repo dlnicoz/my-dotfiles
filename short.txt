@@ -1,0 +1,220 @@
+this is vim usage shortcut
+:q // quit
+:q! // quit forcely
+:w .. save
+:wq ..save and quit
+"""""""""""""""""""navigation"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+hjkl - use to navigate
+x - use to delete
+r - use to replace word
+dd - cmd - delete line
+a - cmd to move cursor towards right
+G - to move end of page
+gg - to move first line of page
+10 jklh - to move easily
+yy - copy
+o - move to next line
+O - above the line
+w - move forward 
+b - move backward
+^ - move cursor begining line
+$ - move cursor end line
+W B - also used to moving by ignoring white spaces
+I - move first line 
+t ! any word - move there
+f ! any word - move there
+H puts the cursor at top of the screen
+L opposite of H
+e cursor at end of word
+$ cursor at end of line
+H - Puts the cursor at the top of the screen
+M - Puts the cursor in the middle of the screen
+L - Puts the cursor at the bottom of the screen
+w - Puts the cursor at the start of the next word
+b - Puts the cursor at the start of the previous word
+e - Puts the cursor at the end of a word
+0 - Places the cursor at the beginning of a line
+$ - Places the cursor at the end of a line
+) - Takes you to the start of the next sentence
+( - Takes you to the start of the previous sentence
+} - Takes you to the start of the next paragraph or block of text
+{ - Takes you to the start of the previous paragraph or block of text
+Ctrl + f - Takes you one page forward
+Ctrl + b - Takes you one page back
+gg - Places the cursor at the start of the file
+G - Places the cursor at the end of the file
+
+"""""""""""""""""""navigation end"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""searching """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+/[keyword] - Searches for text in the document where keyword is whatever keyword, phrase or string of characters you're looking for
+?[keyword] - Searches previous text for your keyword, phrase or character string
+n - Searches your text again in whatever direction your last search was
+N - Searches your text again in the opposite direction
+:%s/[pattern]/[replacement]/g - This replaces all occurrences of a pattern without confirming each one
+:%s/[pattern]/[replacement]/gc - Replaces all occurrences of a pattern and confirms each one
+
+"""""""""""""""""""""searching end"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""editing""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+yy - Copies a line
+D = use to delete further words from cursor
+yw - Copies a word
+y$ - Copies from where your cursor is to the end of a line
+v - Highlight one character at a time using arrow buttons or the h, k, j, l buttons
+V - Highlights one line, and movement keys can allow you to highlight additional lines
+p - Paste whatever has been copied to the unnamed register
+d - Deletes highlighted text
+dd - Deletes a line of text
+dw - Deletes a word
+D - Deletes everything from where your cursor is to the end of the line
+d0 - Deletes everything from where your cursor is to the beginning of the line
+dgg - Deletes everything from where your cursor is to the beginning of the file
+dG - Deletes everything from where your cursor is to the end of the file
+x - Deletes a single character
+u - Undo the last operation; u# allows you to undo multiple actions
+Ctrl + r - Redo the last undo
+. - Repeats the last action
+P - paste or also deleted one 
+d then } - it will delete whole block
+
+"""""""""""""""""""editing end""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""key bindinds"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+leader t nerdtree
+m,=change focus buffer to right side buffer
+,m = opposite to above
+space t = nerdtree
+ctrl jklh = change focus on buffer
+.. = to delete buffer
+ctrl arrow keys to change size of buffer
+/ use to search word using regex
+s = sneak feature use
+space space p = prettier 
+
+
+"""""""""""""""""""key bindinds end """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+
+
+
+
+
+
+
+"""""""""""""""""""""""""vim surround"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Surround One Word
+
+I am happy.
+I am "happy".
+
+""""""""""""""Solution: ysiw" (ys: add surroundings; iw: entire word, no matter where the cursor is as long as it's at the word you want to surround; ": character to surround text with)
+Surround Entire Line
+
+I am happy; she is sad.
+(I am happy; she is sad.)
+
+""""""""""""""Solution: yss) (ys: add surroundings; s: entire line; ) character to surround line with)
+
+Note: If you use yss( instead of yss), spaces will be added around your text: ( I am happy; she is sad. )
+Surround Entire Line or Paragraph with Tags
+
+Hello World! How are you?
+<p>Hello World! How are you?</p>
+
+"""""""""""""""Solution: yss<p> (yss: add surroundings to entire line; <p> tag to surround line with)
+
+Note: The closing tag </p> will be auto-completed. Very convenient!
+Surround Multiple Words
+
+I am very very happy.
+I am *very very* happy.
+
+""""""""""""""Solution: ys2aw* (ys: add surroundings; 2: number of words to surround, starting with the word under the cursor; aw: around words; *: character to surround text with)
+Surround Multiple Words with Tags
+
+Hello World! How are you?
+<em>Hello World</em>! How are you?
+
+""""""""""""""Solution: ys2aw<em> (add surroundings around 2 words; remember to place your cursor under Hello first!)
+Surround Selected Text
+
+The solution is x + y = z. You responded wrongly.
+The solution is `x + y = z`. You responded wrongly.
+
+""""""""""""""Solution: Place cursor under x, then veeeeS` (v: enter visual mode to select text; eeee: press however many times you need to select the number of words you want to select; S` surrounds the selected text with `)
+Delete Surroundings
+
+"Hello World!"
+Hello World
+
+""""""""""""""""""Solution: ds" (ds: delete surrounding; ": character to delete; place cursor anywhere inside the text area)
+Delete Surrounding Tags
+
+<em><p>Hello World!</p></em>
+Hello World!
+
+"""""""""""""""""" Solution: dstdst (dst; delete surrounding tag); if you install repeat.vim, you can use . to repeat, so dst. will be the same as dstdst
+Change Surroundings
+
+"Hello World!"
+*Hello World!*
+""""""""""""""""""""""" Solution: cs"* (cs: change surrounding; ": existing surrounding; *: new surrounding)
+Change Surrounding Tags
+
+<p>Hello World!</p>
+<em>Hello World!</em>
+
+"""""""""""""""""" Solution: cst<em> (cst: change surrounding tag; <em>: new surrounding)
+Common Example 1
+
+Find the mean of a set of numbers
+
+3 + 2 + 5 + 7 / 4  
+# wrong because brackets are missing# solution
+3 + 2 + 5 + 7 / 4  # place cursor under 3, then veeeeS)
+(3 + 2 + 5 + 7) / 4# surround text with functions/methods when coding
+(3 + 2 + 5 + 7) / 4  # yss)iprint
+print((3 + 2 + 5 + 7) / 4)
+
+Common Example 2
+
+Emphasize text, with and without repeat.vim
+
+Hello World.
+Hello *World*. 
+Hello **World**.
+
+Solution 1 (without repeat.vim): ysiw*lysiw after moving cursor to under W (ysiw*: surround word with *; l: move cursor to W again; ysiw*: surround word with *)
+
+Solution 2 (with repeat.vim): ysiw*l. (. repeats ysiw*)
+
+"""""""""""""""""""""""""vim surround"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+
+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
+git token to use first revoke 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
