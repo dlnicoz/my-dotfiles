@@ -7,7 +7,7 @@ syntax on
 " Set FZF Default to Ripgrep (must install ripgrep)
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --no-ignore-vcs'
 "easy finds files globally
-nmap <silent> gF :<C-u>Files ~<CR> 
+nmap <silent> gff :<C-u>Files ~<CR> 
 " Options viewable by using :options
 " Set options viewable by using :set all
 " Or help for individual configs can be accessed :help <name>
@@ -105,7 +105,16 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Python code formatter
 "Plug 'ambv/black'
-
+Plug 'puremourning/vimspector'
+let g:vimspector_enable_mappings = 'HUMAN'
+"packadd! vimspector
+nmap <leader>dd :call vimspector#Launch()<CR>
+nmap <leader>dx :VimspectorReset<CR>
+nmap <leader>de :VimspectorEval
+nmap <leader>dw :VimspectorWatch
+nmap <leader>do :VimspectorShowOutput
+autocmd FileType java nmap <leader>dd :CocCommand java.debug.vimspector.start<CR>
+Plug 'honza/vim-snippets'
 " Gruvbox color theme
 Plug 'morhetz/gruvbox'
 
