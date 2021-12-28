@@ -87,7 +87,6 @@ Plug 'scrooloose/nerdtree'
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'     "Highlighting Nerdtree
     Plug 'ryanoasis/vim-devicons'                      "Icons for Nerdtree
 "{{ Productivity }}
-    Plug 'vimwiki/vimwiki'                             "VimWiki 
     Plug 'jreybert/vimagit'                            "Magit-like plugin for vim
   
 " Visualize undo history tree (in vim undo is not linear)
@@ -105,15 +104,6 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Python code formatter
 "Plug 'ambv/black'
-Plug 'puremourning/vimspector'
-let g:vimspector_enable_mappings = 'HUMAN'
-"packadd! vimspector
-nmap <leader>dd :call vimspector#Launch()<CR>
-nmap <leader>dx :VimspectorReset<CR>
-nmap <leader>de :VimspectorEval
-nmap <leader>dw :VimspectorWatch
-nmap <leader>do :VimspectorShowOutput
-autocmd FileType java nmap <leader>dd :CocCommand java.debug.vimspector.start<CR>
 Plug 'honza/vim-snippets'
 " Gruvbox color theme
 Plug 'morhetz/gruvbox'
@@ -133,7 +123,7 @@ Plug 'valloric/MatchTagAlways'
 call plug#end()
 let mapleader = " "
 " Maps
-nmap <leader>hk :vsplit ~/.vim/hotkeys<cr>
+nmap <leader>hk :vsplit ~/short.txt<cr>
 nmap <leader>gd <Plug>(coc-definition)
 nmap <leader>gr <Plug>(coc-references)
 nmap <leader>t :NERDTree<cr>
@@ -171,7 +161,7 @@ set cmdheight=2
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
-set updatetime=300
+set updatetime=200
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
@@ -213,7 +203,7 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-
+  
 " GoTo code navigation.
 
 " Use K to show documentation in preview window.
