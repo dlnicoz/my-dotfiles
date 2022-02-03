@@ -35,13 +35,22 @@ set nobackup
 set undofile 
 set undodir=~/.vim/undordir
 set incsearch
+set invlist
+noremap <Leader><Tab><Tab> :set invlist<CR>
+noremap! <C-BS> <C-w>
+noremap! <C-h> <C-w>
+
 set relativenumber
 "set cursorline
 nmap ; 5j
 nmap ' 5k
 " Column set to column 100
 "set colorcolumn=100
-
+" 28 dec update
+nmap P "0p
+nmap ,P "0P
+noremap <leader>w :up<cr>
+inoremap <silent> <c-c> <c-c>:call tagalong#Apply()<cr>
 " Column color set to grey
 highlight ColorColumn ctermbg=NONE
 
@@ -49,8 +58,11 @@ highlight ColorColumn ctermbg=NONE
 call plug#begin('~/.vim/plugged')
 "close tag 
 Plug 'alvan/vim-closetag'
-
-
+Plug  'AndrewRadev/tagalong.vim'
+let g:tagalong_filetypes = ['eco', 'eelixir', 'ejs', 'eruby', 'html', 'htmldjango', 'javascriptreact', 'jsx', 'php', 'typescriptreact', 'xml']
+let g:tagalong_mappings = [{'c': '_c'}, 'i', 'a']
+let g:tagalong_verbose = 1
+let g:tagalong_additional_filetypes = ['custom', 'another']
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Make your Vim/Neovim as smart as VSCode
 
@@ -87,13 +99,13 @@ Plug 'scrooloose/nerdtree'
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'     "Highlighting Nerdtree
     Plug 'ryanoasis/vim-devicons'                      "Icons for Nerdtree
 "{{ Productivity }}
-    Plug 'jreybert/vimagit'                            "Magit-like plugin for vim
+    "Plug 'jreybert/vimagit'                            "Magit-like plugin for vim
   
 " Visualize undo history tree (in vim undo is not linear)
 Plug 'mbbill/undotree'
-
+"Plug 'vim-syntastic/syntastic'
 " Syntax highlighting for languages
-Plug 'sheerun/vim-polyglot'
+"Plug 'sheerun/vim-polyglot'
 
 " Fzf is a general-purpose command-line fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -115,7 +127,7 @@ Plug 'patstockwell/vim-monokai-tasty'
 Plug 'ap/vim-css-color' 
 "emmet plugin
 Plug 'mattn/emmet-vim'
-let g:user_emmet_install_global = 0
+let g:user_emmet_leader_key=','
 autocmd FileType vue,html,css,ts,js,ejs,javascriptreact,typescriptreact,svelte EmmetInstall
 
 Plug 'valloric/MatchTagAlways'
@@ -124,6 +136,9 @@ call plug#end()
 let mapleader = " "
 " Maps
 nmap <leader>hk :vsplit ~/short.txt<cr>
+nmap <leader>hj :vsplit <cr>
+nmap <leader>hl :sp <cr>
+nmap <leader>hh :hide <cr>
 nmap <leader>gd <Plug>(coc-definition)
 nmap <leader>gr <Plug>(coc-references)
 nmap <leader>t :NERDTree<cr>
@@ -137,10 +152,20 @@ nmap <leader><leader><leader>g :GoMetaLinter<cr>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <leader><leader>c :call nerdcommenter#Comment(0,"toggle")<CR>
 vnoremap <leader><leader>c :call nerdcommenter#Comment(0,"toggle")<CR>
-nnoremap ,, :bnext<CR>
+"nnoremap ,, :bnext<CR>
 nnoremap mm :bprevious<CR>
 
 nnoremap .. :bd<CR>
+"synatically 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+
 """"""""""""""""""""""""coc nvim settings start""""""""""""""""""""""""
 
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some

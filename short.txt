@@ -81,7 +81,12 @@ Ctrl + r - Redo the last undo
 . - Repeats the last action
 P - paste or also deleted one 
 d then } - it will delete whole block
+--------If you want to search and replace the pattern in the entire file, use the percentage character % as a range. This character indicates a range from the first to the last line of the file:
 
+:%s/foo/bar/g
+--------to confirms each substitution use the c flag
+
+:s/foo/bar/gc
 """""""""""""""""""editing end""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""key bindinds"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -96,7 +101,29 @@ ctrl arrow keys to change size of buffer
 / use to search word using regex
 s = sneak feature use
 space space p = prettier 
+,, = use to apply vim emmet
 
+
+" Maps
+nmap <leader>hk :vsplit ~/short.txt<cr>
+nmap <leader>hj :vsplit <cr>
+nmap <leader>hl :sp <cr>
+nmap <leader>hh :hide <cr>
+nmap <leader>gd <Plug>(coc-definition)
+nmap <leader>gr <Plug>(coc-references)
+nmap <leader>t :NERDTree<cr>
+nmap <leader><leader>p :Prettier<cr>
+nmap <leader><leader>g :GoFmt<cr>
+nmap <leader><leader>b :Black<cr>
+nmap <leader><leader>u :UndotreeToggle<cr>
+" Files (runs $FZF_DEFAULT_COMMAND if defined)
+nmap <leader><leader>f :Files<cr>
+nmap <leader><leader><leader>g :GoMetaLinter<cr>
+nnoremap <C-p> :GFiles<CR>
+nnoremap <leader><leader>c :call nerdcommenter#Comment(0,"toggle")<CR>
+vnoremap <leader><leader>c :call nerdcommenter#Comment(0,"toggle")<CR>
+"nnoremap ,, :bnext<CR>
+nnoremap mm :bprevious<CR>
 
 """""""""""""""""""key bindinds end """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -205,7 +232,8 @@ git token to use first revoke
 
 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
 
-
+ded1b81190364976817edd028ac18eb5
+news api
 
 
 
