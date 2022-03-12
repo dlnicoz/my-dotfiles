@@ -6,6 +6,7 @@ alias la="ls -a"
 alias ssr="shutdown 00"
 alias zz="exit"
 alias cc="clear"
+alias p="python"
 alias gs="git status"
 alias glog='git log --graph --decorate --oneline'
 

@@ -104,9 +104,12 @@ space space p = prettier
 ,, = use to apply vim emmet
 
 
+mksession ~/name.vim  
+mks! name.vim // overwrite session
+
 " Maps
-nmap <leader>hk :vsplit ~/short.txt<cr>
-nmap <leader>hj :vsplit <cr>
+nmap <leader>hk :vsplit ~/short.txt<cr> imp
+nmap <leader>hj :vsplit <cr>   imp
 nmap <leader>hl :sp <cr>
 nmap <leader>hh :hide <cr>
 nmap <leader>gd <Plug>(coc-definition)
@@ -228,9 +231,8 @@ Solution 2 (with repeat.vim): ysiw*l. (. repeats ysiw*)
 
 
 latest token
+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
 git token to use first revoke 
-
-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
 
 ded1b81190364976817edd028ac18eb5
 news api
@@ -238,10 +240,30 @@ news api
 
 
 
+"""""""""""""""""""""""""""""""""""""""""" react vites""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+our project  
+https://freshysites.com/web-design-development/best-architecture-websites/
+https://olsonkundig.com/
+
+first create new dir
+npm init vite
+npm install 
+npm run dev
+
+
+another way to vite
+yarn create vite my-vue-app --template vue
+npm create vite@latest Interio -- --template react
 
 
 
 
 
 
+          <img
+            className="aspect-img"
+            src="https://source.unsplash.com/1600x900/?interior-bedroom"
+            alt="remote image"
+          />
 
+"""""""""""""""""""""""""""""""""""""""""" react vites""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -1,11 +1,11 @@
-" Map escape to jj
+  "Map escape to jj
 imap jj <Esc>
 
 " Syntax highlighting
 syntax on
 
 " Set FZF Default to Ripgrep (must install ripgrep)
-let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --no-ignore-vcs'
+"let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --no-ignore-vcs'
 "easy finds files globally
 nmap <silent> gff :<C-u>Files ~<CR> 
 " Options viewable by using :options
@@ -18,6 +18,10 @@ set statusline=...%{battery#component()}...
 set clipboard=unnamedplus
 set tabline=...%{battery#component()}...
 set noswapfile
+set hlsearch
+set hls
+set showcmd
+set autoread
 set redrawtime=10000
 set background=dark
 set noerrorbells
@@ -36,10 +40,21 @@ set undofile
 set undodir=~/.vim/undordir
 set incsearch
 set invlist
+"shalu
 noremap <Leader><Tab><Tab> :set invlist<CR>
 noremap! <C-BS> <C-w>
 noremap! <C-h> <C-w>
 
+augroup VIMRC
+  " this one is which you're most likely to use?
+  autocmd BufLeave *.scss,*.css normal! mC
+  autocmd BufLeave *.js,*.ts normal! mJ
+  autocmd BufLeave *.html, normal! mH
+  autocmd BufLeave *.vue, normal! mV
+augroup end
+"shalu
+nmap ,t :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
+nmap ,T :terminal<CR>
 set relativenumber
 "set cursorline
 nmap ; 5j
@@ -78,6 +93,16 @@ Plug 'drewtempelmeyer/palenight.vim'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 Plug 'maxmellon/vim-jsx-pretty'
+
+" framework specific plugins
+Plug 'peitalin/vim-jsx-typescript'
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+Plug 'mlaursen/vim-react-snippets'
+
+Plug 'Chiel92/vim-autoformat'
+noremap <F5> :Autoformat<CR>
+
 " Comment and uncomment lines
 Plug 'preservim/nerdcommenter'
 let NERDTreeShowHidden=1
@@ -103,13 +128,24 @@ Plug 'scrooloose/nerdtree'
   
 " Visualize undo history tree (in vim undo is not linear)
 Plug 'mbbill/undotree'
-"Plug 'vim-syntastic/syntastic'
+Plug 'vim-syntastic/syntastic'
 " Syntax highlighting for languages
-"Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
 
 " Fzf is a general-purpose command-line fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
+endfunction
+let g:fzf_action = {
+      \ 'ctrl-q': function('s:build_quickfix_list'),
+      \ 'ctrl-t': 'tab split',
+      \ 'ctrl-x': 'split',
+      \ 'ctrl-v': 'vsplit' }
+let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
 
 " This plugin adds Go language support for Vim, with many features
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -135,7 +171,8 @@ Plug 'valloric/MatchTagAlways'
 call plug#end()
 let mapleader = " "
 " Maps
-nmap <leader>hk :vsplit ~/short.txt<cr>
+vmap <leader>p  <Plug>(coc-format-selected)
+nmap <leader>hk :vsplit ~/.vimrc<cr>
 nmap <leader>hj :vsplit <cr>
 nmap <leader>hl :sp <cr>
 nmap <leader>hh :hide <cr>
@@ -152,8 +189,8 @@ nmap <leader><leader><leader>g :GoMetaLinter<cr>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <leader><leader>c :call nerdcommenter#Comment(0,"toggle")<CR>
 vnoremap <leader><leader>c :call nerdcommenter#Comment(0,"toggle")<CR>
-"nnoremap ,, :bnext<CR>
-nnoremap mm :bprevious<CR>
+nnoremap mm :bnext<CR>
+nnoremap nn :bprevious<CR>
 
 nnoremap .. :bd<CR>
 "synatically 
@@ -349,6 +386,10 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"python mapping 
+autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+"imap <F5> <Esc>:w<CR>:!clear;python %<CR>
 "remapping by theprimeagen
 
 "5
