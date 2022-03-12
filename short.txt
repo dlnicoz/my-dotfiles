@@ -4,7 +4,6 @@ this is vim usage shortcut
 :w .. save
 :wq ..save and quit
 """""""""""""""""""navigation"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-dheeraj sahani
 hjkl - use to navigate
 x - use to delete
 r - use to replace word
@@ -230,12 +229,9 @@ Solution 2 (with repeat.vim): ysiw*l. (. repeats ysiw*)
 
 
 
-latest token
-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
-git token to use first revoke 
+ghp_92407396k8VJIgYfS9UmoXKWYnZ6e6bkP10NVMa
 
 ded1b81190364976817edd028ac18eb5
-news api
 
 
 
